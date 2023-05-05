@@ -4,7 +4,7 @@ const IFramePageRoutes: {[pageKey: string]: string} = {
 };
 
 const getUrlForIFramePage = (pageKey: string) => {
-    const domain = 'http://localhost:8443'; // TODO: make this work for whatever environment the script is being built for
+    const domain = 'https://localhost:8443'; // TODO: make this work for whatever environment the script is being built for
     const route = IFramePageRoutes[pageKey];
     if (!route) {
         throw new Error(`Invalid page key: ${pageKey}`);
