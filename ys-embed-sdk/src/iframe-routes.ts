@@ -1,9 +1,10 @@
 
-const IFramePageRoutes: {[pageKey: string]: string} = {
+const IFramePageRoutes = {
     'report-builder': '/advisor-dashboard/reports/'
 };
+export type IFramePageKey = keyof typeof IFramePageRoutes;
 
-const getUrlForIFramePage = (pageKey: string) => {
+export const getUrlForIFramePage = (pageKey: IFramePageKey) => {
     const domain = 'https://localhost:8443'; // TODO: make this work for whatever environment the script is being built for
     const route = IFramePageRoutes[pageKey];
     if (!route) {
@@ -12,4 +13,3 @@ const getUrlForIFramePage = (pageKey: string) => {
     return domain + route;
 };
 
-export default getUrlForIFramePage;
