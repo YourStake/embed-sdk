@@ -1,6 +1,6 @@
 
 const IFramePageRoutes = {
-    'report-builder': '/advisor-dashboard/reports/'
+    'report-builder': '/ui/embed/reports/'
 };
 export type IFramePageKey = keyof typeof IFramePageRoutes;
 
