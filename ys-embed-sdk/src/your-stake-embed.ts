@@ -1,12 +1,10 @@
-import { getUrlForIFramePage, IFramePageKey } from "./iframe-routes";
+import { IFRAME_DOMAIN, getUrlForIFramePage, IFramePageKey } from "./iframe-navigation-utils";
 
 interface YSEmbedSetupArgs {
     targetElementIdentifier: string
     initialPage: IFramePageKey
     width: string
     height: string
-    // onLoad: Function | null
-    // onError: Function | null
 }
 interface YSEmbedConstructorArgs extends YSEmbedSetupArgs {
     oAuthToken: string
@@ -20,6 +18,7 @@ interface YSEmbedInitArgs extends YSEmbedSetupArgs {
 }
 
 class YourStakeEmbed {
+    iframeDomain: string;
     oAuthToken: string;
     targetElement: HTMLElement;
     iframeElement: HTMLIFrameElement;
@@ -31,9 +30,8 @@ class YourStakeEmbed {
         initialPage,
         width,
         height,
-        // onLoad=null,
-        // onError=null,
     } : YSEmbedConstructorArgs) {
+        this.iframeDomain = IFRAME_DOMAIN;
         this.oAuthToken = oAuthToken;
 
         this.currentPage = initialPage;
@@ -58,8 +56,6 @@ class YourStakeEmbed {
         initialPage='report-builder',
         width,
         height,
-        // onLoad=null,
-        // onError=null,
     }: YSEmbedInitArgs) {
         const oAuthToken = await this.getAuthToken(clientId, clientSecret, authCode, pkceCodeVerifier, oAuthRedirectUri);
         return new YourStakeEmbed({
@@ -68,8 +64,6 @@ class YourStakeEmbed {
             initialPage: initialPage,
             width: width,
             height: height,
-            // onLoad: null,
-            // onError: null,
         });
     }
 
@@ -88,7 +82,7 @@ class YourStakeEmbed {
     sendPostMessageToIFrame(data: Object) {
         // TODO structure and validate this
         console.log('parent sending post message')
-        this.iframeElement.contentWindow?.postMessage(data, "https://localhost:8443");
+        this.iframeElement.contentWindow?.postMessage(data, this.iframeDomain);
     }
 
     handlePostMessageFromIFrame(event: MessageEvent) {
@@ -101,7 +95,7 @@ class YourStakeEmbed {
 
     static async getAuthToken(clientId: string, clientSecret: string, authCode: string, pkceCodeVerifier: string, oAuthRedirectUri: string): Promise<string> {
         let response = await fetch(
-            'https://localhost:8443/oauth/token/',
+            IFRAME_DOMAIN + '/oauth/token/',
             {
                 method: "POST",
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

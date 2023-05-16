@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { defineConfig } from 'vite'
 
-let _ = defineConfig(({mode}) => {
+export default defineConfig(({mode}) => {
     const iframeDomain = {
         'production': 'https://www.yourstake.org',
         'development': 'https://localhost:8443',
@@ -50,6 +50,3 @@ let _ = defineConfig(({mode}) => {
         }
     };
 });
-// console.log("_: ", _.build.rollupOptions.output);
-
-export default _;
