@@ -1,0 +1,31 @@
+name: Build and Deploy
+run-name: ${{ github.event.head_commit.message }}
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build it!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      
+      - name: Install dependencies
+        run: cd ys-embed-sdk && npm install
+      
+      - name: Build
+        run: cd ys-embed-sdk && npm run build --mode=production
+      
+      - name: Check output
+        run: cd ys-embed-sdk/dist && ls
+      
+      - name: Check if aws cli is installed
+        run: aws
