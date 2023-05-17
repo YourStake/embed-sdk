@@ -5,7 +5,7 @@
 - NOTE: This README is intended for internal users. If you are looking for instructions to share with a client then see [this document](https://github.com/YourStake/embed-sdk/blob/main/README-external.md) instead. That README also has more detailed instructions regarding usage of the sdk on the webpage.
 
 ### `npm run build`
-* By default this will build for local (`--mode=development`), but you can also built for production by specifying so: `npm run build --mode=production`.
+* By default this will build for local (`--mode=development`), but you can also build for production by specifying so: `npm run build --mode=production`.
 * The js bundle file will be generated in the dist/ folder. When building for local environment the js bundle will be copied into the embed mock app repo's asset folder (`../embed-mock-app/frontend/src/assets/`). [Go here for details on setting up the embed mock app](https://github.com/YourStake/embed-mock-app).
 
 ### `npm run watch`
