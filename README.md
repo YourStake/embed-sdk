@@ -1,14 +1,12 @@
 
 # YourStake Embed SDK
-This repo is responsible for building the Yourstake Embed SDK.
 
-### Setup
-You can setup the repo and build by running the following: `cd ys-embed-sdk && npm i && npm run build`
+- This repo is responsible for building the "sdk" which will render Yourstake experiences in an embedded iframe on client websites.
+- NOTE: This README is intended for internal users. If you are looking for instructions to share with a client then see [this document](https://github.com/YourStake/embed-sdk/blob/main/README-external.md) instead. That README also has more detailed instructions regarding usage of the sdk on the webpage.
 
-### Building
-You can build the sdk file by running `npm run build`, although if you are making changes to the sdk you might want to use `npm run watch-build` instead for hot reloading.
+### `npm run build`
+* By default this will build for local (`--mode=development`), but you can also built for production by specifying so: `npm run build --mode=production`.
+* The js bundle file will be generated in the dist/ folder. When building for local environment the js bundle will be copied into the embed mock app repo's asset folder (`../embed-mock-app/frontend/src/assets/`). [Go here for details on setting up the embed mock app](https://github.com/YourStake/embed-mock-app).
 
-After building you should see the sdk script at `ys-embed-sdk/dist/yourstake-embed-sdk-v1.js`
-
-### Using the SDK
-In order to use it you will need to keep Vite running `npm run dev`. This will run Vite on port 7173. The sdk file is being served from `http://localhost:7173/dist/yourstake-embed-sdk-v1.js`
+### `npm run watch`
+* You can use `npm run watch` if you would like for builds to run automatically whenever you change a file in the sdk.

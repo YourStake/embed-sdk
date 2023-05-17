@@ -1,4 +1,4 @@
-# YourStake Embed README
+# YourStake Embed SDK
 
 ## Step 1: Getting the Authentication Code
 - Once Yourstake has registered you oauth application in our system you will receive the following from us:
