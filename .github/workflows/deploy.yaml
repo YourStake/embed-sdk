@@ -22,7 +22,7 @@ jobs:
         run: echo "Hello from the GH action"
       
       - name: Install dependencies
-        run: npm install
+        run: cd ys-embed-sdk && npm install
       
       - name: Build
         run: npm run build --mode=production && ls
