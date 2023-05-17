@@ -18,11 +18,11 @@ jobs:
         with:
           node-version: '16'
       
-      - name: Test message
-        run: echo "Hello from the GH action"
-      
       - name: Install dependencies
         run: cd ys-embed-sdk && npm install
       
       - name: Build
-        run: cd ys-embed-sdk && npm run build --mode=production && ls
+        run: cd ys-embed-sdk && npm run build --mode=production
+      
+      - name: Check output
+        run: cd dist && ls
