@@ -19,13 +19,13 @@ jobs:
           node-version: '16'
       
       - name: Install dependencies
-        run: cd ys-embed-sdk && npm install
+        run: npm install
       
       - name: Build
-        run: cd ys-embed-sdk && npm run build --mode=production
+        run: npm run build --mode=production
       
       - name: Check output
-        run: cd ys-embed-sdk/dist && ls
+        run: cd dist/ && ls
       
       - name: Check if aws cli is installed
         run: aws

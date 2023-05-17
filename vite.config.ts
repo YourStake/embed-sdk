@@ -28,7 +28,7 @@ export default defineConfig(({mode}) => {
                     if (mode === 'development') {
                         fs.copyFile(
                             'dist/yourstake-embed-sdk.js',
-                            '../../embed-mock-app/frontend/src/assets/yourstake-embed-sdk.js',
+                            '../embed-mock-app/frontend/src/assets/yourstake-embed-sdk.js',
                             (error) => {
                                 if (error) {
                                     console.error('Error while copying bundle to mock embed app: ', error);
