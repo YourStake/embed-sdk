@@ -25,4 +25,4 @@ jobs:
         run: cd ys-embed-sdk && npm install
       
       - name: Build
-        run: npm run build --mode=production && ls
+        run: cd ys-embed-sdk && npm run build --mode=production && ls
