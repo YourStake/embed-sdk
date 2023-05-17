@@ -3,6 +3,7 @@
 
 * This repo is responsible for building the "sdk" which will render Yourstake experiences in an embedded iframe on client websites.
 * NOTE: This README is intended for internal users. If you are looking for instructions to share with a client then see [this document](https://github.com/YourStake/embed-sdk/blob/main/README-external.md) instead. That README also has more detailed instructions regarding usage of the sdk on the webpage.
+* If you are looking for instructions to setup your sdk with your local mock embed app, [see here](https://github.com/YourStake/embed-mock-app).
 
 ### `npm run build`
 * By default this will build for local (`--mode=development`), but you can also build for production by specifying so: `npm run build --mode=production`.
