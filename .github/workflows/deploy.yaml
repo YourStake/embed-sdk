@@ -26,3 +26,6 @@ jobs:
       
       - name: Check output
         run: cd ys-embed-sdk/dist && ls
+      
+      - name: Check if aws cli is installed
+        run: aws
