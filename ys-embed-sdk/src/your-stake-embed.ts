@@ -12,6 +12,8 @@ interface YSEmbedConstructorArgs {
     onLoad: Function | null
 }
 
+type PostMessageType = 'auth_data'; // Note: any other types can be added here, i.e.  | 'some_other_message_type'
+
 class YourStakeEmbed {
     iframeDomain: string;
     targetElement: HTMLElement;
@@ -65,7 +67,7 @@ class YourStakeEmbed {
         this.iframeElement.src = getUrlForIFramePage(this.currentPage);
     }
 
-    sendPostMessageToIFrame(messageType: string, messageData: Object) {
+    sendPostMessageToIFrame(messageType: PostMessageType, messageData: Object) {
         // TODO structure and validate this
         const data = {messageType, messageData};
         console.log('parent sending post message of data: ', data);
