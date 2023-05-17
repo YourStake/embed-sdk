@@ -1,5 +1,5 @@
 name: Build and Deploy
-run-name: Deploy [${{ github.event.head_commit.message }}]
+run-name: ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
@@ -20,3 +20,10 @@ jobs:
       
       - name: Test message
         run: echo "Hello from the GH action"
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build
+        run: npm run build --mode=production
+        run: ls
