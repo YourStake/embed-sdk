@@ -38,6 +38,7 @@ class YourStakeEmbed {
         this.iframeElement.id = 'yourstake-embedded-iframe';
         this.resizeIframe(width, height);
         this.setIframePage(this.currentPage);
+        this.iframeElement.allow = `clipboard-write ${this.iframeDomain}`;
         this.iframeElement.onload = () => {
             this.sendPostMessageToIFrame('auth_data', {
                 clientId,
