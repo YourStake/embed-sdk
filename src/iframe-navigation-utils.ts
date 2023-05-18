@@ -13,6 +13,6 @@ export const getUrlForIFramePage = (pageKey: IFramePageKey) => {
     if (!route) {
         throw new Error(`Invalid page key: ${pageKey}`);
     }
-    return IFRAME_DOMAIN + route;
+    return IFRAME_DOMAIN + route + '?is_embed=1';
 };
 
