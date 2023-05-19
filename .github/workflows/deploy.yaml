@@ -1,5 +1,5 @@
 name: Build and Deploy
-run-name: ${{ github.event.head_commit.message }}
+run-name: ${{ github.event.head_commit.message }} ${{ github.event.release.tag_name }}
 on:
   release:
     types: [published]
@@ -26,11 +26,8 @@ jobs:
       - name: Build
         run:  npm run build --mode=production
       
-      - name: Check output
+      - name: Check build output
         run:  cd dist/ && ls
-      
-      - name: Check release version
-        run:  echo "This is release ${{ github.event.release.tag_name }}"
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
