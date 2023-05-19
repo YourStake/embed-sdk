@@ -1,8 +1,8 @@
 name: Build and Deploy
 run-name: ${{ github.event.head_commit.message }}
 on:
-  push:
-    branches: main
+  release:
+    types: [published]
 
 jobs:
   build-and-deploy:
@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NAME: yourstake-embed-sdk
+      VER:  ${{ github.event.release.tag_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -39,7 +40,9 @@ jobs:
           aws-region: us-east-2
       
       - name: Copy file to S3
-        run:  aws s3 cp dist/${NAME}.js s3://stake-assets/embed/${NAME}-latest.js --acl public-read
+        run: |
+          aws s3 cp dist/${NAME}.js s3://stake-assets/embed/${NAME}-${VER}.js --acl public-read
+          aws s3 cp dist/${NAME}.js s3://stake-assets/embed/${NAME}-latest.js --acl public-read
       
       - name: Check results
         run:  aws s3 ls s3://stake-assets/embed/
