@@ -37,7 +37,7 @@ jobs:
           aws-region: us-east-2
       
       - name: Copy file to S3
-        run:  aws s3 cp dist/yourstake-embed-sdk.js s3://stake-assets/embed/
+        run:  aws s3 cp dist/yourstake-embed-sdk.js s3://stake-assets/embed/ --acl public-read
       
       - name: Check results
         run:  aws s3 ls s3://stake-assets/embed/
