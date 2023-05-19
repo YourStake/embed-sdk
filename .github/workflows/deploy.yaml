@@ -40,4 +40,4 @@ jobs:
         run:  aws s3 cp dist/yourstake-embed-sdk.js s3://stake-assets/embed/
       
       - name: Check results
-        run:  aws s3 ls s3://stake-assets
+        run:  aws s3 ls s3://stake-assets/embed
