@@ -1,9 +1,8 @@
 name: Build and Deploy
 run-name: ${{ github.event.head_commit.message }}
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -19,13 +18,13 @@ jobs:
           node-version: '16'
       
       - name: Install dependencies
-        run: npm install
+        run:  npm install
       
       - name: Build
-        run: npm run build --mode=production
+        run:  npm run build --mode=production
       
       - name: Check output
-        run: cd dist/ && ls
+        run:  cd dist/ && ls
       
-      - name: Check if aws cli is installed
-        run: aws
+      - name: Check release version
+        run:  echo "This is release ${{ github.event.release.tag_name }}"
