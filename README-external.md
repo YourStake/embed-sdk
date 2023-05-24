@@ -18,9 +18,10 @@
 ## Step 2: Getting the Embed SDK
 - In order to fetch the embed sdk, include the following script somewhere on the page (preferably in the head to ensure that it can load quickly enough relative to the rest of the page):
 ```
-<!-- TODO: replace src with proper production url -->
-<script type="application/javascript" src="src/assets/yourstake-embed-sdk.js"></script>
+<script type="application/javascript" src="[insert path to yourstake sdk js file]"></script>
 ```
+The "latest" sdk file can be found at: https://d1sax13m7bgtnp.cloudfront.net/embed/yourstake-embed-sdk-latest.js
+and specific versions will be available at: https://d1sax13m7bgtnp.cloudfront.net/embed/yourstake-embed-sdk-[insert version].js
 
 ## Step 3: Initializing the Embed
 - After step 2 the Yourstake embed constructor will be mounted on `window._YourStakeEmbed`.
