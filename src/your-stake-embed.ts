@@ -3,6 +3,7 @@ import { IFRAME_DOMAIN, getUrlForIFramePage, IFramePageKey } from "./iframe-navi
 interface YSEmbedConstructorArgs {
     targetElementIdentifier: string
     initialPage: IFramePageKey
+    slug: string
     width: string
     height: string
     clientId: string
@@ -23,6 +24,7 @@ class YourStakeEmbed {
     constructor({
         targetElementIdentifier,
         initialPage='report-builder',
+        slug='', // Will be appended to the end of the url
         width,
         height,
         clientId,
@@ -37,7 +39,7 @@ class YourStakeEmbed {
         this.iframeElement = document.createElement('iframe');
         this.iframeElement.id = 'yourstake-embedded-iframe';
         this.resizeIframe(width, height);
-        this.setIframePage(this.currentPage);
+        this.setIframePage(this.currentPage, slug);
         this.iframeElement.allow = `clipboard-write ${this.iframeDomain}`;
         this.iframeElement.onload = () => {
             this.sendPostMessageToIFrame('auth_data', {
@@ -62,10 +64,10 @@ class YourStakeEmbed {
         this.iframeElement.style.height = height;
     }
 
-    setIframePage(pageKey: IFramePageKey) {
+    setIframePage(pageKey: IFramePageKey, slug: string = '') {
         this.currentPage = pageKey;
         // TODO check that the specified page is a valid page which the user is authorized to load
-        this.iframeElement.src = getUrlForIFramePage(this.currentPage);
+        this.iframeElement.src = getUrlForIFramePage(this.currentPage, slug);
     }
 
     sendPostMessageToIFrame(messageType: PostMessageType, messageData: Object) {
