@@ -78,16 +78,13 @@ jobs:
     #     echo "Run, Build Application using script"
     #     ./location_of_script_within_repo/buildscript.sh
 
-    - name: Perform CodeQL Analysis
+    - name: Run CodeQL analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
     
-    - name: List files
-      run:  ls ../results
-    
     - name: Save results
       uses: actions/upload-artifact@v3
       with:
-        name: CodeQL Results
-        path: /home/runner/work/embed-sdk/results/javascript.sarif
+        name: CodeQL_Results
+        path: /home/runner/work/embed-sdk/results/
