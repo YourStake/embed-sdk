@@ -85,3 +85,9 @@ jobs:
     
     - name: List files
       run:  ls ../results
+    
+    - name: Save results
+      uses: actions/upload-artifact@v3
+      with:
+        name: CodeQL Results
+        path: ../results
