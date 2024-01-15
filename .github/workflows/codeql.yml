@@ -90,4 +90,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: CodeQL Results
-        path: ../results
+        path: /home/runner/work/embed-sdk/results/javascript.sarif
