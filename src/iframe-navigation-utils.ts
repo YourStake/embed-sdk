@@ -5,15 +5,26 @@ export const IFRAME_DOMAIN = '__YS_IFRAME_DOMAIN__';
 
 const IFramePageRoutes = {
     'report-builder': '/ui/embed/reports/',
+    'values-picker' : '/ui/visitor/wizard',
     'behavioral-questionnaire': '/questionnaire/intro/',
 };
 export type IFramePageKey = keyof typeof IFramePageRoutes;
 
-export const getUrlForIFramePage = (pageKey: IFramePageKey, slug: string = '') => {
+export const getUrlForIFramePage = (pageKey: IFramePageKey, slug: string, params: {[key: string]: string}) => {
     const route = IFramePageRoutes[pageKey];
     if (!route) {
         throw new Error(`Invalid page key: ${pageKey}`);
     }
-    return IFRAME_DOMAIN + route + (slug ? `${slug}/` : '') + '?is_embed=1';
+    
+    params.is_embed = '1';
+    const paramStrings = Object.keys(params).map((key) => `${key}=${params[key]}`);
+
+    return [
+        IFRAME_DOMAIN,
+        route,
+        slug ? `${slug}/` : '',
+        paramStrings.length ? '?' : '',
+        paramStrings.join('&'),
+    ].join('');
 };
 
