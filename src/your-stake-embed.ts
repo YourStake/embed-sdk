@@ -56,7 +56,18 @@ class YourStakeEmbed {
         this.targetElement = document.getElementById(targetElementIdentifier) as HTMLElement;
         this.targetElement.appendChild(this.iframeElement);
 
-        window.addEventListener("message", (event) => this.handlePostMessageFromIFrame(event));
+        // For messages sent by embedded YourStake back to parent
+        window.addEventListener("message", (event) => {
+            // Ensures that only messages actually from YourStake will be processed
+            // Will need to set this up to support development environments as well
+            const trustedOrigin = 'https://www.yourstake.org';
+        
+            if (event.origin === trustedOrigin) {
+                this.handlePostMessageFromIFrame(event);
+            } else {
+                console.warn('Received message from untrusted origin:', event.origin);
+            }
+        });        
     }
 
 
