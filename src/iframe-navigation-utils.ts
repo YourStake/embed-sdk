@@ -4,6 +4,7 @@
 export const IFRAME_DOMAIN = '__YS_IFRAME_DOMAIN__';
 
 const IFramePageRoutes = {
+    'reports': '/',
     'report-builder': '/ui/embed/reports/',
     'values-picker' : '/ui/visitor/wizard',
     'behavioral-questionnaire': '/questionnaire/intro/',
