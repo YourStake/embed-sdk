@@ -3,7 +3,8 @@ import { defineConfig } from 'vite'
 
 export default defineConfig(({mode}) => {
     const iframeDomain = {
-        'production': 'https://www.yourstake.org',
+        'production':  'https://www.yourstake.org',
+        'staging':     'https://elb-stg.yourstake.ai',
         'development': 'https://localhost:8443',
     }[mode];
 

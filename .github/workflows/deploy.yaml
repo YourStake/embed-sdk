@@ -23,12 +23,6 @@ jobs:
       - name: Install dependencies
         run:  npm install
       
-      - name: Build
-        run:  npm run build --mode=production
-      
-      - name: Check build output
-        run:  cd dist/ && ls
-      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -36,10 +30,21 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
       
-      - name: Copy file to S3
+      - name: Build for production
+        run:  npm run build --mode=production
+      
+      - name: Copy production files to S3
         run: |
           aws s3 cp dist/${NAME}.js s3://stake-assets/embed/${NAME}-${VER}.js --acl public-read
           aws s3 cp dist/${NAME}.js s3://stake-assets/embed/${NAME}-latest.js --acl public-read
+      
+      - name: Build for staging
+        run:  npm run build --mode=staging
+      
+      - name: Copy staging files to S3
+        run: |
+          aws s3 cp dist/${NAME}.js s3://stake-assets/embed/staging/${NAME}-${VER}.js --acl public-read
+          aws s3 cp dist/${NAME}.js s3://stake-assets/embed/staging/${NAME}-latest.js --acl public-read
       
       - name: Check results
         run:  aws s3 ls s3://stake-assets/embed/
